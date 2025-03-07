@@ -1,4 +1,4 @@
-package Ex01;
+package Aula03.Ex01;
 
 public class Team {
 
