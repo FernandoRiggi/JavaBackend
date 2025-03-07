@@ -1,3 +1,5 @@
+package Aula03.Ex00;
+
 public class Deck {
     private final Card[] deck = new Card[52];
     private int numberOfCards =0;
