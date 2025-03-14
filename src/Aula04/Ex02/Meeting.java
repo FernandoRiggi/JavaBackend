@@ -5,11 +5,11 @@ import java.time.LocalTime;
 
 public class Meeting {
 
-    private String description;
+    private final String description;
 
-    private LocalTime startTime;
+    private final LocalTime startTime;
 
-    private LocalTime endTime;
+    private final LocalTime endTime;
 
     public LocalTime getEndTime() {
         return endTime;
@@ -26,7 +26,9 @@ public class Meeting {
     }
 
     public static Meeting of(String description, LocalTime startTime, LocalTime endTime) {
-        if(startTime.isAfter(endTime)) return null;
+        if (startTime.isAfter(endTime)) {
+            throw new IllegalArgumentException("Start time must be before end time.");
+        }
         return new Meeting(description, startTime, endTime);
     }
 
@@ -36,6 +38,7 @@ public class Meeting {
 
     @Override
     public String toString() {
-        return "[description=" + description + ", startTime=" + startTime + ", endTime=" + endTime + "]";
+        return String.format("Meeting { description='%s', startTime=%s, endTime=%s }",
+                description, startTime, endTime);
     }
 }
