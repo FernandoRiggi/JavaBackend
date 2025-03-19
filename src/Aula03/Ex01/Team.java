@@ -5,7 +5,7 @@ public class Team {
     private String name;
     private String baseLocation;
     private String coachName;
-    private Player[] players = new Player[18];
+    private final Player[] players = new Player[18];
     private int counter = 0;
     private Player captain;
 
@@ -51,40 +51,29 @@ public class Team {
     }
 
     public Player[] getFieldedPlayers() {
-        int count = 0;
-        for (int i = 0; i < counter; i++) {
-            if (players[i] != null && players[i].isFielded()) {
-                count++;
-            }
-        }
-
-        Player[] fieldedPlayers = new Player[count];
-        int index = 0;
-        for (int i = 0; i < counter; i++) {
-            if (players[i] != null && players[i].isFielded()) {
-                fieldedPlayers[index++] = players[i];
-            }
-        }
-
-        return fieldedPlayers;
+        return getPlayersByState(true);
     }
 
     public Player[] getOutfieldedPlayers() {
+        return getPlayersByState(false);
+    }
+
+    private Player[] getPlayersByState(boolean isFielded) {
         int count = 0;
         for (int i = 0; i < counter; i++) {
-            if (players[i] != null && !players[i].isFielded()) {
+            if (players[i] != null && (players[i].isFielded()==isFielded)) {
                 count++;
             }
         }
 
-        Player[] outfieldedPlayers = new Player[count];
+        Player[] result = new Player[count];
         int index = 0;
         for (int i = 0; i < counter; i++) {
             if (players[i] != null && !players[i].isFielded()) {
-                outfieldedPlayers[index++] = players[i];
+                result[index++] = players[i];
             }
         }
 
-        return outfieldedPlayers;
+        return result;
     }
 }

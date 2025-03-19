@@ -6,9 +6,6 @@
         private String position;
         private boolean isFielded;
 
-        public Player() {
-        }
-
         public Player(String name, String position, int number, boolean isFielded) {
             this.name = name;
             this.position = position;
