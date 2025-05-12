@@ -20,6 +20,7 @@ public class InMemomoryEmployeeRepository implements EmployeeRepository{
     public void update(Employee entity) {
         if(!db.containsKey(entity.getId()))
             throw new NoSuchElementException("Entity not found: " + entity.getId());
+        db.put(entity.getId(), entity);
     }
 
     @Override
